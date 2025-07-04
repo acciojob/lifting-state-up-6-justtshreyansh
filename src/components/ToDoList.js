@@ -7,7 +7,7 @@ const ToDoList = ({todos,handleComplete}) => {
       <ul>
        {
         todos.map((ele,index)=>{
-           return  <li key={index}><p>{ele.task}</p> {!ele.status && <button onClick={()=>handleComplete(index)}>Complete</button>}</li>
+           return  <li key={index}><p>{ele.task}</p> {!ele.status && (<button onClick={()=>handleComplete(index)}>Complete</button>)}</li>
         })
        }
       </ul>
