@@ -1,23 +1,28 @@
-
 import React, { useState } from "react";
-import './../styles/App.css';
 import ToDoList from "./ToDoList";
-const arr = [{task:"Learn React",status:false},{task:"Build a React app",status:false},{task:"Deploy the React app",status:false},]
+
+const initialTodos = [
+  { task: "Learn React", status: false },
+  { task: "Build a React app", status: false },
+  { task: "Deploy the React app", status: false },
+];
+
 const App = () => {
-  const[todos,setTodos] = useState(arr);
+  const [todos, setTodos] = useState(initialTodos);
+
   const handleComplete = (index) => {
-    const newTodos = [...todos];
-    newTodos[index].status = true;  // mark complete
+    const newTodos = todos.map((todo, i) =>
+      i === index ? { ...todo, status: true } : todo
+    );
     setTodos(newTodos);
-    console.log("clicked")
   };
+
   return (
     <div>
       <h1>Parent component</h1>
-      <ToDoList todos={todos} handleComplete={handleComplete}/>
-        {/* Do not remove the main div */}
+      <ToDoList todos={todos} handleComplete={handleComplete} />
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
